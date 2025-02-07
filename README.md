@@ -13,7 +13,22 @@
 
 Tenha instalado a lingaguem golang na versão 1.23 ou posterior e o docker.
 Adicione um arquivo .env na pasta build
-[.env.example](../../Documentos/investiment-analyzer/.env.example)
+API_PORT=8080
+API_VERSION=
+API_NAME=
+DB_NAME=investment-analyzer
+DB_USER=user
+DB_PASSWORD=passw0rd
+DB_HOST=postgres-database
+DB_PORT=5432
+CACHE_HOST=redis-cache
+CACHE_PORT=6379
+CACHE_PASSWORD=passw0rd
+CACHE_READ_TIMEOUT=2
+CACHE_WRITE_TIMEOUT=2
+ALLOW_ORIGINS=http://localhost:3000,https://localhost:8080
+OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+ENVIRONMENT=local
 
 ~~~ make 
 make docker-build
