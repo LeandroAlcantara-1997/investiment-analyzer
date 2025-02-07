@@ -1,0 +1,99 @@
+basePath: /v1
+definitions:
+  dto.AnalyzerRequest:
+    properties:
+      finalDate:
+        example: Scott Summers
+        type: string
+      initialDate:
+        example: Cyclop
+        type: string
+      interval:
+        type: integer
+    required:
+    - finalDate
+    - initialDate
+    - interval
+    type: object
+  dto.AnalyzersResponse:
+    properties:
+      accumulatedProfitability:
+        type: number
+      heritageEvolution:
+        type: number
+    type: object
+externalDocs:
+  description: OpenAPI
+host: localhost:8080
+info:
+  contact:
+    url: https://www.linkedin.com/in/leandro-alcantara-pro
+  description: Heroes social network is a project created to make life easier for
+    superhero fans.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /reports:
+    get:
+      consumes:
+      - application/json
+      description: Get a investiment report
+      parameters:
+      - description: analyzer
+        in: body
+        name: hero
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AnalyzerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.AnalyzersResponse'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Get a investiment report
+      tags:
+      - Analyzers
+    post:
+      consumes:
+      - application/json
+      description: Put trade report file
+      parameters:
+      - description: trades file
+        in: formData
+        name: tradesFile
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Put trade report file
+      tags:
+      - Analyzers
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"

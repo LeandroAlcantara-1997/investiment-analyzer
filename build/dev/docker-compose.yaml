@@ -1,0 +1,20 @@
+services:
+  investment-analyzer-dev:
+    container_name: investment-analyzer-container-dev
+    env_file:
+      - ../.env
+    volumes:
+      - ..:/workspace
+    build:
+      context: ./../
+      dockerfile: build/dev/Dockerfile
+    ports:
+      - "8080:8080"
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    networks:
+      - investment-analyzer-network
+
+networks:
+  investment-analyzer-network:
+      name: investment-analyzer
+      driver: bridge
